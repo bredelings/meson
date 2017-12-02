@@ -82,8 +82,10 @@ install:
         If($Env:compiler -eq 'msys2-mingw') {
           If($Env:arch -eq 'x86') {
             $env:Path = 'C:\msys64\mingw32\bin;' + $env:Path
+            $env:MESON_PYTHON_PATH = 'C:\msys64\mingw32\bin\python.exe'
           } Else {
             $env:Path = 'C:\msys64\mingw64\bin;' + $env:Path
+            $env:MESON_PYTHON_PATH = 'C:\msys64\mingw64\bin\python.exe'
           }
         }
   - cmd: if not %compiler%==cygwin ( set "PATH=%cd%;%MESON_PYTHON_PATH%;%PATH%;" )
