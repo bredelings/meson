@@ -316,10 +316,12 @@ class BoostDependency(ExternalDependency):
         globber2 = globber2 + '-{}'.format(self.version.replace('.', '_'))
         globber2_matches = glob.glob(os.path.join(self.libdir, globber2 + '.lib'))
         for entry in globber2_matches:
+            fname = os.path.basename(entry)
             self.lib_modules[self.modname_from_filename(fname)] = fname
         if len(globber2_matches) == 0:
             for entry in glob.glob(os.path.join(self.libdir, globber1 + '.lib')):
                 if self.static:
+                    fname = os.path.basename(entry)
                     self.lib_modules[self.modname_from_filename(fname)] = fname
 
     def detect_lib_modules_nix(self):
