@@ -360,7 +360,7 @@ class BoostDependency(ExternalDependency):
                 else:
                     continue
                 modname = self.modname_from_filename(entry)
-                if not modname in self.lib_modules:
+                if modname not in self.lib_modules:
                     self.lib_modules[modname] = entry
 
     def get_win_link_args(self):
