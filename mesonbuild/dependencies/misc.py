@@ -361,7 +361,7 @@ class BoostDependency(ExternalDependency):
             for name in self.need_static_link:
                 libname = 'lib{}.a'.format(name)
                 if os.path.isfile(os.path.join(libdir, libname)):
-                    self.lib_modules[name] = libname
+                    self.lib_modules[name] = [libname]
             for entry in glob.glob(os.path.join(libdir, globber)):
                 # I'm not 100% sure what to do here. Some distros
                 # have modules such as thread only as -mt versions.
