@@ -414,15 +414,6 @@ class BoostDependency(ExternalDependency):
                 if modname not in self.lib_modules:
                     self.lib_modules[modname] = [entry]
 
-    def get_win_link_args(self):
-        args = []
-        # TODO: should this check self.libdir?
-        if self.libdir:
-            args.append('-L' + self.libdir)
-        for lib in self.requested_modules:
-            args += self.lib_modules['boost_' + lib]
-        return args
-
     def extra_lib_dirs(self):
         dirs = []
         if self.boost_root:
@@ -432,8 +423,6 @@ class BoostDependency(ExternalDependency):
         return dirs
 
     def get_link_args(self):
-        if mesonlib.is_windows():
-            return self.get_win_link_args()
         args = []
         for dir in self.extra_lib_dirs():
             args += ['-L' + dir]
