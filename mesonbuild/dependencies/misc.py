@@ -98,7 +98,7 @@ from .base import (
 class BoostDependency(ExternalDependency):
     def __init__(self, environment, kwargs):
         super().__init__('boost', environment, 'cpp', kwargs)
-        self.need_static_link = ['boost_exception', 'boost_test_exec_monitor','boost_prg_exec_monitor','boost_unit_test_framework']
+        self.need_static_link = ['boost_exception', 'boost_test_exec_monitor', 'boost_prg_exec_monitor', 'boost_unit_test_framework']
         self.is_debug = environment.cmd_line_options.buildtype.startswith('debug')
         threading = kwargs.get("threading", "multi")
         self.is_multithreading = threading == "multi"
@@ -361,7 +361,7 @@ class BoostDependency(ExternalDependency):
         all_found = True
         for module in self.requested_modules:
             args = None
-            libname = 'boost_'+module
+            libname = 'boost_' + module
             if self.is_multithreading and not mesonlib.for_linux(self.want_cross, self.env):
                 # - Linux leaves off -mt but libraries are multithreading-aware.
                 # - Mac requires -mt for multithreading, so should not fall back to non-mt libraries.
@@ -417,9 +417,9 @@ class BoostDependency(ExternalDependency):
     def extra_lib_dirs(self):
         dirs = []
         if self.boost_root:
-            dirs= [ os.path.join(self.boost_root, 'lib')]
+            dirs = [os.path.join(self.boost_root, 'lib')]
         elif self.libdir:
-            dirs = [ self.libdir ]
+            dirs = [self.libdir]
         return dirs
 
     def get_link_args(self):
